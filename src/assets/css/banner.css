@@ -1,0 +1,80 @@
+:root {
+    --profileWidth: 70px;
+    --tipsFontSize: 20px
+}
+
+.center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxBanner {
+    margin: calc(0px - var(--profileWidth) - 60px - 15px - var(--tipsFontSize)) 0 0 0;
+    width: 100%;
+
+}
+
+.banner {
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/bkg.jpg);
+    filter: blur(5px);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.profileBox {
+    position: relative;
+    top: calc(var(--profileWidth) + 150px);
+    z-index: 100;
+}
+
+.profile {
+    width: var(--profileWidth);
+    height: var(--profileWidth);
+
+    border-radius: 10px;
+    background-image: url(../img/me.jpg);
+    backdrop-filter: blur(10px);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 60px white;
+
+    transition: transform 1s;
+}
+
+.profile:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.inputTips {
+    margin: 15px 0 0 0;
+    color: white;
+
+    font-size: var(--tipsFontSize);
+    font-weight: 700;
+    z-index: 100;
+}
+
+@keyframes myAnimation {
+    0% {
+        transform: scale(1, 1)
+    }
+
+    50% {
+        transform: scale(1.1, 1.1)
+    }
+
+    100% {
+        /* 结束状态 */
+        transform: scale(1, 1)
+    }
+}
+
+.inputTips {
+    animation: myAnimation 1.5s infinite;
+    animation-timing-function: ease-in-out
+}
