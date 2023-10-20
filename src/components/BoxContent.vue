@@ -5,7 +5,7 @@ defineProps(['question', 'answer'])
 </script>
 
 <template>
-    <div class="quesBox flex-center-col">
+    <div class="quesBox flex-center-col animate__animated animate__fadeInUp">
         <div class="ques">
             <div class="boxProfile">
                 <img src="../assets/img/Q.png" alt="">

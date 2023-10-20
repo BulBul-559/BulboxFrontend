@@ -19,12 +19,12 @@ function mode2() {
 <template>
     <div class="modeChoice">
         <router-link to="/bulbox/">
-            <div class="mode1YouAskMe modeSwitchBtn" @click="mode1">
+            <div class="mode1YouAskMe modeSwitchBtn animate__animated animate__slideInLeft" @click="mode1">
                 我来提问
             </div>
         </router-link>
         <router-link to="/bulbox/IAskYou">
-            <div class="mode2IAskYou modeSwitchBtn" @click="mode2">
+            <div class="mode2IAskYou modeSwitchBtn animate__animated animate__slideInRight" @click="mode2">
                 我要回答
             </div>
         </router-link>

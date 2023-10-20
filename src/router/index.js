@@ -10,24 +10,6 @@ const router = createRouter({
       name: 'default',
       component: youAskMe
     },
-    // {
-    //   path: '/other/test/',
-    //   name: 'default test',
-    //   component: youAskMe
-    // },
-    // {
-    //   path: '/other/test/youAskMe',
-    //   name: 'youAskMe test',
-    //   component: youAskMe
-    // },
-    // {
-    //   path: '/other/test/IAskYou',
-    //   name: 'IAskYou test',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/IAskYou.vue')
-    // },
     {
       path: '/bulbox/youAskMe',
       name: 'youAskMe',
@@ -40,8 +22,17 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/IAskYou.vue')
-    }
-    
+    },
+    {
+      path: '/',
+      name: 'youAskMe dev',
+      component: youAskMe
+    },    
+    {
+      path: '/IAskYou',
+      name: 'IAskYou dev',
+      component: () => import('../views/IAskYou.vue')
+    },
   ]
 })
 

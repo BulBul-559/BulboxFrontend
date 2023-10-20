@@ -18,17 +18,17 @@ const debounce = (function () {
 })();
 
 function postData(content) {
+    // axios.post('https://api.bulbul559.cn/bulbox/postYouAskMe/',
     axios.post('https://api.bulbul559.cn/bulbox/index/',
-        // axios.post('http://127.0.0.1:8000/bulbox/index/',
         {
             ques: content
         }
     ).then(
-        ( ) => {
+        () => {
             //执行成功后代码处理
             inputContent.value = ''//清空发送框文字
             // inputH.value = '0px'//收起发送框
-            
+
             alert('提问已发送，等待回复吧！未回复内容不会显示，回复后会显示在下方。')
 
             emit('sub-ques')//上抛事件，触发 getQues
