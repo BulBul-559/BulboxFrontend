@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import youAskMe from '../views/youAskMe.vue'
 import banner from '../components/BoxBanner.vue'
 import mode from '../components/SwitchMode.vue'
 // import test2 from '../views/test2.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/bulbox/',

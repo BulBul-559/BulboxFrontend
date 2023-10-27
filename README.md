@@ -25,3 +25,7 @@
 可以给 router-view 加一个 name 从而在同一个页面上使用不同的 router-view
 
 
+
+
+git add .
+git commit -m "v2.0.2 Beta"
