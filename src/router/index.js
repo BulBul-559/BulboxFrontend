@@ -8,7 +8,7 @@ const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/bulbox/',
+      path: '/',
       name: 'default',
       components: {
         youAskMe: youAskMe,
@@ -17,7 +17,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/bulbox/youAskMe',
+      path: '/youAskMe',
       name: 'youAskMe',
       components: {
         youAskMe: youAskMe,
@@ -26,7 +26,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/bulbox/IAskYou',
+      path: '/IAskYou',
       name: 'IAskYou',
       components: {
         IAskYou: () => import('../views/IAskYou.vue'),
@@ -35,19 +35,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/',
-      name: 'youAskMe dev',
-      component: youAskMe
-    },
-    {
-      path: '/IAskYou',
-      name: 'IAskYou dev',
-      components: {
-        IAskYou: () => import('../views/IAskYou.vue')
-      }
-    },
-    {
-      path: '/bulbox/IAskYou/:title',
+      path: '/IAskYou/:title',
       name: 'IAskYou-ques',
       components: {
         IAskYouQues: () => import('../views/QuesDetail.vue')

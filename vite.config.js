@@ -11,14 +11,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: './',
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8000/bulbox/', //跨域地址
-        changeOrigin: true, //支持跨域
-        rewrite: (path) => path.replace(/^\/api/, '') //重写路径,替换/api
-      }
-    }
-  }
+  base: './bulbox/'
 })

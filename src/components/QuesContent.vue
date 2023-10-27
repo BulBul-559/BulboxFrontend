@@ -4,7 +4,7 @@ defineProps(['question', 'ansNum', 'quesId'])
 </script>
 
 <template>
-    <router-link class="quesLink flex-center-col" :to="'/bulbox/IAskYou/' + quesId">
+    <router-link class="quesLink flex-center-col" :to="'/IAskYou/' + quesId">
         <div class="quesBox flex-center-col animate__animated animate__fadeInUp">
             <div class="ques myQues flex-center-col">
                 <div class="quesContent flex-center-col">{{ question }}</div>
