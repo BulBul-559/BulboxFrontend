@@ -16,8 +16,8 @@ let ansContent = ref({
 })
 
 function getQues() {
-    // axios.get('https://api.bulbul559.cn/bulbox/getYouAskMe/')
-    axios.get('https://api.bulbul559.cn/bulbox/getQues/')
+    axios.get('https://api.bulbul559.cn/bulbox/getYouAskMe/')
+        // axios.get('https://api.bulbul559.cn/bulbox/getQues/')
         .then(
             (res) => {
                 //执行成功后代码处理
@@ -62,7 +62,7 @@ onMounted(() => {
     <InputBox @sub-ques="getQues" :input-h="inputH" />
 
     <div class="tips animate__animated animate__flipInX">
-        <div>- 共 {{ ansContent.ansNum + ansContent.notAnsNum }} 条提问 -</div>
+        <div>- 共 {{ ansContent.ansNum + ansContent.notAnsNum + ansContent.notDisplay }} 条提问 -</div>
         <div>- 已回复 {{ ansContent.ansNum }} 条 未回复 {{ ansContent.notAnsNum }} 条 折叠 {{ ansContent.notDisplay }} 条-</div>
     </div>
 

@@ -18,8 +18,8 @@ const debounce = (function () {
 })();
 
 function postData(content) {
-    // axios.post('https://api.bulbul559.cn/bulbox/postYouAskMe/',
-    axios.post('https://api.bulbul559.cn/bulbox/index/',
+    axios.post('https://api.bulbul559.cn/bulbox/postYouAskMe/',
+    // axios.post('https://api.bulbul559.cn/bulbox/index/',
         {
             ques: content
         }

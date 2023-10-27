@@ -21,7 +21,7 @@ defineProps(['question', 'answer'])
     </div>
 </template>
 
-<style>
+<style scoped>
 .flex-center-col {
     display: flex;
     flex-direction: column;

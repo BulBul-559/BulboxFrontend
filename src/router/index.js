@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import youAskMe from '../views/youAskMe.vue'
+import banner from '../components/BoxBanner.vue'
+import mode from '../components/SwitchMode.vue'
 // import test2 from '../views/test2.vue'
 
 const router = createRouter({
@@ -8,31 +10,49 @@ const router = createRouter({
     {
       path: '/bulbox/',
       name: 'default',
-      component: youAskMe
+      components: {
+        youAskMe: youAskMe,
+        banner: banner,
+        mode: mode
+      }
     },
     {
       path: '/bulbox/youAskMe',
       name: 'youAskMe',
-      component: youAskMe
+      components: {
+        youAskMe: youAskMe,
+        banner: banner,
+        mode: mode
+      }
     },
     {
       path: '/bulbox/IAskYou',
       name: 'IAskYou',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/IAskYou.vue')
+      components: {
+        IAskYou: () => import('../views/IAskYou.vue'),
+        banner: banner,
+        mode: mode
+      }
     },
     {
       path: '/',
       name: 'youAskMe dev',
       component: youAskMe
-    },    
+    },
     {
       path: '/IAskYou',
       name: 'IAskYou dev',
-      component: () => import('../views/IAskYou.vue')
+      components: {
+        IAskYou: () => import('../views/IAskYou.vue')
+      }
     },
+    {
+      path: '/bulbox/IAskYou/:title',
+      name: 'IAskYou-ques',
+      components: {
+        IAskYouQues: () => import('../views/QuesDetail.vue')
+      }
+    }
   ]
 })
 
