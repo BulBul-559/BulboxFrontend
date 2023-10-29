@@ -54,6 +54,7 @@ function getQues() {
 
 onMounted(() => {
     getQues();
+
 })
 
 </script>

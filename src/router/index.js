@@ -35,7 +35,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/IAskYou/:title',
+      path: '/IAskYou/:quesId',
       name: 'IAskYou-ques',
       components: {
         IAskYouQues: () => import('../views/QuesDetail.vue')

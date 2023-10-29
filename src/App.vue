@@ -6,14 +6,15 @@ import './assets/css/index.css'
 import './assets/css/whoAskWho.css'
 import { ref } from 'vue'
 
-let version = 'v2.0.2 Beta'
+let version = 'v2.1.0'
 
 let youAskMe = ref(false)
 let IAskYou = ref(false)
 let inputH = ref("0px");
+
 function displayInput() {
   if (inputH.value == '0px') {
-    inputH.value = '290px'
+    inputH.value = '310px'
   } else {
     inputH.value = '0px'
   }
@@ -52,8 +53,8 @@ function switchMode2() {
 
   <router-view name="mode" @mode1="switchMode1" @mode2="switchMode2"></router-view>
 
-  <router-view name="youAskMe" :input-h="inputH"></router-view>
-  <router-view name="IAskYou"></router-view>
+  <router-view name="youAskMe" @mode1="switchMode1" :input-h="inputH"></router-view>
+  <router-view name="IAskYou" @mode2="switchMode2"></router-view>
 
   <router-view name="IAskYouQues"></router-view>
 

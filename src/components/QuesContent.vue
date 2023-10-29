@@ -10,7 +10,7 @@ defineProps(['question', 'ansNum', 'quesId'])
                 <div class="quesContent flex-center-col">{{ question }}</div>
             </div>
 
-            <div class="ansList">
+            <div class="ansTips">
                 -- 共 {{ ansNum }} 条回答 --
             </div>
         </div>
@@ -62,6 +62,13 @@ a:focus {
 .quesContent {
     width: 100%;
     margin: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
+    font-family: "SmileySans";
+    color: rgb(52, 103, 151);
+}
+
+.ansTips {
+    font-family: "SmileySans";
+    color: grey;
 }
 </style>

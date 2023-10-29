@@ -1,6 +1,10 @@
 <script setup>
 import QuesContent from '../components/QuesContent.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const emit = defineEmits(['mode2'])
+
 
 let quesContent = ref({
     quesList: [],
@@ -8,43 +12,36 @@ let quesContent = ref({
 }
 )
 
-// let quesContent = ref({
-//     quesList: [{
-//         id: 0,
-//         ques: "这是测试的提问1",
-//         quesTime: null,
-//         ansList: [{}],
-//         ansNum: 0
-//     }, {
-//         id: 1,
-//         ques: "这是测试的提问2",
-//         quesTime: null,
-//         ansList: [
-//             { id: 0, ans: "This is the test." },
-//             { id: 1, ans: "This is the test." },
-//             { id: 2, ans: "This is the test." },
-//             { id: 3, ans: "This is the test." },
-//             { id: 4, ans: "This is the test." },
-//             { id: 5, ans: "This is the test." },
-//             { id: 6, ans: "This is the test." },
-//             { id: 7, ans: "This is the test." },
-//             { id: 8, ans: "This is the test." },
-//             { id: 9, ans: "This is the test." }],
-//         ansNum: 10
-//     }, {
-//         id: 2,
-//         ques: "这是测试的提问3，并且测试一下如果内容很多折行了怎么办",
-//         quesTime: null,
-//         ansList: [
-//             { id: 0, ans: "This is the test." },
-//             { id: 1, ans: "This is the test." }],
-//         ansNum: 2
-//     },],
-//     quesNum: 3
-// })
+function getQues() {
+    axios.get('https://api.bulbul559.cn/bulbox/getIAskYouQues/')
+        .then(
+            (res) => {
+                //执行成功后代码处理
+                let tempList = []//问题列表
+                for (let i = 0; i < res.data.length; i++) {
+                    let temp = {}//临时存储
+                    temp.id = res.data[i].id;
+                    temp.ques = res.data[i].ques
+                    temp.ansNum = res.data[i].commentsNum
+                    tempList.push(temp)
+                }
 
+                //设置绑定的数据
+                quesContent.value.quesList = tempList
+                quesContent.value.quesNum = tempList.length
+            }
+        )
+        .catch(function (error) {
+            console.log(error);
+        })
+}
 
-// console.log(quesContent)
+onMounted(() => {
+    emit('mode2')
+    getQues()
+}
+)
+
 </script>
 
 <template>
