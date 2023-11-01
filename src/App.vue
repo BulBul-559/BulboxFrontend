@@ -1,12 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-// import BoxBanner from './components/BoxBanner.vue';
-// import SwitchMode from './components/SwitchMode.vue';
 import './assets/css/index.css'
 import './assets/css/whoAskWho.css'
 import { ref } from 'vue'
 
-let version = 'v2.1.0'
+let version = 'v2.1.1'
 
 let youAskMe = ref(false)
 let IAskYou = ref(false)
@@ -18,6 +16,11 @@ function displayInput() {
   } else {
     inputH.value = '0px'
   }
+}
+
+function toMode1OnMounted() {
+  youAskMe.value = true;
+  IAskYou.value = false;
 }
 
 function switchMode1() {
@@ -53,10 +56,12 @@ function switchMode2() {
 
   <router-view name="mode" @mode1="switchMode1" @mode2="switchMode2"></router-view>
 
-  <router-view name="youAskMe" @mode1="switchMode1" :input-h="inputH"></router-view>
+  <router-view name="youAskMe" @mode1="toMode1OnMounted" :input-h="inputH"></router-view>
   <router-view name="IAskYou" @mode2="switchMode2"></router-view>
 
   <router-view name="IAskYouQues"></router-view>
+
+
 
   <div class="boxInfo">
     <div class="copyright">By Bulbul</div>

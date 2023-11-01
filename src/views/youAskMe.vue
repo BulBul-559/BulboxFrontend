@@ -6,6 +6,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios';
 
 defineProps(['inputH'])
+const emit = defineEmits(['mode1'])
 
 let ansContent = ref({
     ansList: [],
@@ -54,7 +55,8 @@ function getQues() {
 
 onMounted(() => {
     getQues();
-
+    emit('mode1')
+    console.log('mounted')
 })
 
 </script>

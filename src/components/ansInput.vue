@@ -41,10 +41,11 @@ function postData(content) {
             inputContent.value = ''//清空发送框文字
             // inputH.value = '0px'//收起发送框
             displayInput()
-            alert('回答已发送！等待审核吧！')
             emit('subAns')
         }
-    ).catch(function (error) {
+    ).then(() => {
+        alert('回答已发送！等待审核吧！')
+    }).catch(function (error) {
         console.log(error);
     });
 }
@@ -70,7 +71,7 @@ function submitQues() {
                 :placeholder="placeholderText"> </textarea>
             <div class="inputSubmit" @click="submitQues">发送回答</div>
         </div>
-        <div class="tips" @click="displayInput">{{ tipIcon }}</div>
+        <div class="tips animate__animated animate__heartBeat" @click="displayInput">{{ tipIcon }}</div>
     </div>
 </template>
 
@@ -98,6 +99,7 @@ function submitQues() {
 .tips {
     font-size: 30px;
     font-family: "SmileySans";
+    animation-iteration-count: infinite
 }
 
 .inputContent {

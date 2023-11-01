@@ -11,8 +11,9 @@ let _quesId = ref(0)
 let quesContent = ref("")
 let ansContent = ref({
     ansList: [],
-    ansNum: 0,
-    hiddenAns: 0
+    passNum: 0,
+    waitNum: 0,
+    banedNum: 0
 }
 )
 
@@ -20,15 +21,20 @@ function getDetails() {
     axios.post('https://api.bulbul559.cn/bulbox/getIAskYouDetails/', { quesId: _quesId.value })
         .then((res) => {
             let tempList = []
-            let cnt = 0;
-            let icnt = 0;
+            let pass = 0;
+            let wait = 0;
+            let baned = 0;
             let content = res.data
             for (let i = 0; i < content.comments.length; i++) {
                 if (content.comments[i].display == 0) {
-                    icnt++;
+                    wait++;
                     continue;
-                } else {
-                    cnt++;
+                } else if (content.comments[i].display == 2) {
+                    baned++;
+                    continue;
+                }
+                else {
+                    pass++;
                     let temp = {}//临时存储
                     temp.id = content.comments[i].id;
                     temp.content = content.comments[i].content
@@ -36,8 +42,9 @@ function getDetails() {
                 }
             }
             ansContent.value.ansList = tempList
-            ansContent.value.ansNum = cnt
-            ansContent.value.hiddenAns = icnt
+            ansContent.value.passNum = pass
+            ansContent.value.waitNum = wait
+            ansContent.value.banedNum = baned
             quesContent.value = content.ques
         }).catch((err) => { console.log(err) })
 }
@@ -54,18 +61,25 @@ onMounted(() => {
     <router-link to="/IAskYou/" class="navBar flex-col-center">
         Back to Box
     </router-link>
-    <div class="quesContent">
-        {{ quesContent }}
+    <div class="quesContent  animate__animated animate__fadeIn">
+        <div class="quesText animate__animated animate__fadeIn">
+            {{ quesContent }}
+        </div>
+
     </div>
 
     <!-- <div class="line"></div> -->
-    <ansInput :ques-id="_quesId" @sub-ques="getDetails"></ansInput>
+    <ansInput :ques-id="_quesId" @sub-ques="getDetails" class="animate__animated animate__fadeIn"></ansInput>
+
+
     <div class="allAnsContent flex-col-center" v-for="item in ansContent.ansList" :key="item.id">
-        <div class="ansBox">
+        <div class="ansBox animate__animated animate__flipInX">
             {{ item.content }}
         </div>
     </div>
-    <div class="tips">-- 共 {{ ansContent.ansNum + ansContent.hiddenAns }} 条回答 其中 {{ ansContent.hiddenAns }} 条待审核 --</div>
+
+    <div class="tips">-- 共 {{ ansContent.passNum + ansContent.waitNum + ansContent.banedNum }} 条回答 -- </div>
+    <div class="tips">-- 其中 {{ ansContent.waitNum }} 条待审核 {{ ansContent.banedNum }} 条被折叠 --</div>
 </template>
 
 <style scoped>
@@ -79,6 +93,7 @@ onMounted(() => {
 }
 
 .tips {
+    color: grey;
     margin: 0;
 }
 
@@ -94,13 +109,15 @@ onMounted(() => {
     margin: 50px 50px 0;
     padding: 20px 20px 10px;
     width: 80%;
-    color: black;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -3px 10px rgba(71, 71, 71, 0.411);
+}
+
+.quesText {
+    text-align: center;
     font-size: 30px;
     font-family: "SmileySans";
-    border-radius: 30px 30px 0 0;
     color: rgb(52, 103, 151);
-    box-shadow: 0 -3px 10px rgba(71, 71, 71, 0.411);
-    text-align: center
 }
 
 .ansBox {
@@ -111,12 +128,5 @@ onMounted(() => {
     font-size: 20px;
     font-family: "SmileySans";
     text-align: center;
-}
-
-.line {
-    height: 2px;
-    width: 100%;
-    background-color: black;
-
 }
 </style>
