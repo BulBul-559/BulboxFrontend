@@ -17,7 +17,8 @@ let ansContent = ref({
 })
 
 function getQues() {
-    axios.get('https://api.bulbul559.cn/bulbox/getYouAskMe/')
+    // axios.get('http://127.0.0.1:8000/bulbox/getYouAskMe/')
+        axios.get('https://api.bulbul559.cn/bulbox/getYouAskMe/')
         // axios.get('https://api.bulbul559.cn/bulbox/getQues/')
         .then(
             (res) => {
@@ -34,8 +35,8 @@ function getQues() {
                         temp.id = i;
                         temp.question = res.data[i].ques
                         temp.answer = res.data[i].ans
-                        // temp.quesTime = res.data[i].quesTime
-                        // temp.ansTime = res.data[i].ansTime
+                        temp.quesTime = res.data[i].quesTime
+                        temp.ansTime = res.data[i].ansTime
                         temp.display = res.data[i].display
                         tempList.push(temp)
                     } else {
@@ -69,7 +70,8 @@ onMounted(() => {
         <div>- 已回复 {{ ansContent.ansNum }} 条 未回复 {{ ansContent.notAnsNum }} 条 折叠 {{ ansContent.notDisplay }} 条-</div>
     </div>
 
-    <BoxContent v-for="item in ansContent.ansList" v-bind:key="item.id" :question="item.question" :answer="item.answer" />
+    <BoxContent v-for="item in ansContent.ansList" v-bind:key="item.id" :question="item.question" :answer="item.answer"
+        :ques-time="item.quesTime" :ans-time="item.ansTime" />
 
     <div class="bottom">
         -- 已经到底啦！！ --

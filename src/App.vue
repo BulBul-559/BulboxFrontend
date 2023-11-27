@@ -4,7 +4,7 @@ import './assets/css/index.css'
 import './assets/css/whoAskWho.css'
 import { ref } from 'vue'
 
-let version = 'v2.1.1'
+let version = 'v2.1.2'
 
 let youAskMe = ref(false)
 let IAskYou = ref(false)

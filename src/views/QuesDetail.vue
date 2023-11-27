@@ -38,6 +38,7 @@ function getDetails() {
                     let temp = {}//临时存储
                     temp.id = content.comments[i].id;
                     temp.content = content.comments[i].content
+                    temp.ansTime = content.comments[i].ansTime
                     tempList.push(temp)
                 }
             }
@@ -73,6 +74,7 @@ onMounted(() => {
 
 
     <div class="allAnsContent flex-col-center" v-for="item in ansContent.ansList" :key="item.id">
+        <div class="quesTime">{{ item.ansTime }}</div>
         <div class="ansBox animate__animated animate__flipInX">
             {{ item.content }}
         </div>
@@ -122,11 +124,16 @@ onMounted(() => {
 
 .ansBox {
     margin: 0 20px 20px;
-    padding: 20px 20px 0;
+    padding: 0 20px;
     width: 80%;
     border-bottom: 2px solid black;
     font-size: 20px;
     font-family: "SmileySans";
     text-align: center;
+}
+
+.quesTime {
+    font-family: "SmileySans";
+    color: rgba(0, 0, 0, 0.438);
 }
 </style>

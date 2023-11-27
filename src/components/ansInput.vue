@@ -58,7 +58,7 @@ function submitQues() {
     } else {
         debounce(async () => {
             postData(content);
-        }, 200);
+        }, 500);
     }
 }
 
